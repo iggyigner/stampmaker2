@@ -1,4 +1,13 @@
 <h1>Demos#callback</h1>
 <p>Find me in app/views/demos/callback.html.erb</p>
 
-<h1 style="font-size: 900px; text-align: center; margin-top: 0px;"><%= @display %></h1>
+<form action="#" multi-data>
+
+  <input type="file" name="stampImage" id="stampImage" />
+
+  <!-- Parse response and send to template -->
+  <input type="text" value=<%= @response["stamp"]["serial"] %> />
+
+  <input type="submit" value="submit" />
+  
+</form>

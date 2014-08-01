@@ -38,13 +38,8 @@ class DemosController < ApplicationController
     # Get Auth key with consumer
     @resp = @consumer.request(:post, '/v2/stamp', nil, {}, @data, { 'Content-Type' => 'application/x-www-form-urlencoded' })
 
-    # Parse response and send to template
     @response = JSON.parse(@resp.body)
-    if @response["stamp"]["serial"].include? "B"
-      @display = "B"
-    else 
-      @display = "A"
-    end
+    @form_filler = @response["stamp"]["receipt"]
 
   end
 
