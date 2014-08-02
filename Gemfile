@@ -29,6 +29,8 @@ gem 'spring',        group: :development
 gem 'httparty', '0.13.0' #requires .parse in controller, hash 'Party Hard message'
 gem 'pry'
 gem 'oauth'
+gem 'paperclip'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

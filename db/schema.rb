@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724001504) do
+ActiveRecord::Schema.define(version: 20140801233616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20140724001504) do
     t.string   "stamp_serial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stamp_image_file_name"
+    t.string   "stamp_image_content_type"
+    t.integer  "stamp_image_file_size"
+    t.datetime "stamp_image_updated_at"
   end
 
 end
