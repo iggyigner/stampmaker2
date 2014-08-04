@@ -40,11 +40,13 @@ class DemosController < ApplicationController
     @resp = @consumer.request(:post, '/v2/stamp', nil, {}, @data, { 'Content-Type' => 'application/x-www-form-urlencoded' })
 
     @response = JSON.parse(@resp.body)
-    @form_filler = @response["stamp"]["receipt"]
+    @form_filler = @response["stamp"]["serial"]
 
     if params["new"] 
       @demo = Demo.new
-      redirect_to new_demo_path
+      # @form_filler = @response["stamp"]["serial"]
+      # binding.pry
+      render action: "new"
     end
   end
 
@@ -55,6 +57,6 @@ class DemosController < ApplicationController
   private
 
   def demo_params
-  	params.require(:demo).permit(:stamp_serial)
+  	params.require(:demo).permit(:stamp_serial, :stamp_image)
   end 
 end

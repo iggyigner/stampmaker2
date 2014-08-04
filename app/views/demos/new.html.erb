@@ -2,12 +2,15 @@
 <p>Find me in app/views/demos/new.html.erb</p>
 
 <h1>MAKE A STAMP HEREEEEEE!!!! CHICKEN! BURRRITA! BUTTFACE! SUGAR BUNS!</h1>
-
+<h2><%= @form_filler %></h2>
 <!-- pass local variable @response for this to work -->
 <%= form_for @demo do |d| %>
 	<fieldset>
 		<%= d.label :stamp_serial, "Stamp Serial" %>
-		<%= d.text_field :stamp_serial, @response["stamp"]["serial"] %>
+		<%= d.text_field :stamp_serial, :value => @form_filler %>
+
+		<%#= image_tag @demo.stamp_image.url(:medium) %>
+		<%= d.file_field :stamp_image %><br />
 	</fieldset>
 
 	<%= d.submit %>
