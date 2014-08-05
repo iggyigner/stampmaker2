@@ -13,14 +13,20 @@ class DemosController < ApplicationController
   def create
     @demo = Demo.new(demo_params)
     if @demo.save
-    	#CHANGE REDIRECT_TO STAMP SCREEN URL
       redirect_to demos_path
     else
-      render action: "new"
+      flash[:notice] = "Did not save. Cannot create new stamps with the same stamp-serial."
+      render action: "index"
     end
   end
 
-  def edit
+  def update
+    @demo = Demo.find_by_stamp_serial(params[:demo][:stamp_serial])
+    if @demo.update(demo_params)
+      redirect_to demos_path
+    else
+      render action: "edit"
+    end
   end
 
   def callback
@@ -44,9 +50,13 @@ class DemosController < ApplicationController
 
     if params["new"] 
       @demo = Demo.new
-      # @form_filler = @response["stamp"]["serial"]
-      # binding.pry
       render action: "new"
+    elsif params["edit"]
+      @demo = Demo.find_by_stamp_serial(@form_filler)
+      render action: "edit"
+    else
+      @demo = Demo.find_by_stamp_serial(@form_filler)
+      render action: "callback"
     end
   end
 

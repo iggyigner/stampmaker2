@@ -15,6 +15,19 @@ Bundler.require(*Rails.groups)
 
 module Stampmaker
   class Application < Rails::Application
+
+    config.paperclip_defaults = {
+      storage: :fog,
+      fog_credentials: {
+        provider: 'Google',
+        google_storage_access_key_id: ENV['GSTORAGE_ACCESS_KEY_ID'],
+        google_storage_secret_access_key: ENV['GSTORAGE_SECRET_ACCESS_KEY'],
+      },
+      fog_public: true,
+      fog_host: ENV['GSTORAGE_HOST'],
+      fog_directory: ENV['GSTORAGE_BUCKET'],
+      path: ':class/:attachment/:id/:style/:filename'
+    }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

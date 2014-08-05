@@ -1,2 +1,16 @@
 <h1>Demos#edit</h1>
 <p>Find me in app/views/demos/edit.html.erb</p>
+
+<h2><%= @form_filler %></h2>
+<!-- pass local variable @response for this to work -->
+<%= form_for @demo, :url => {:action => "update", :id => @form_filler} do |d| %>
+	<fieldset>
+		<%= d.label :stamp_serial, "Stamp Serial" %>
+		<%= d.text_field :stamp_serial, :value => @form_filler %>
+
+		<%= image_tag @demo.stamp_image.url(:medium) %>
+		<%= d.file_field :stamp_image %><br />
+	</fieldset>
+
+	<%= d.submit "Update Demo" %>
+<% end %>

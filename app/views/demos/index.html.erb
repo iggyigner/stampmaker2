@@ -1,9 +1,9 @@
-<h1>Demos#index</h1>
-<p>Find me in app/views/demos/index.html.erb</p>
-
-<% @demos.each do |demo| %>
-	<h3></h3>
-	<%= demo.stamp_serial %>
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
 <% end %>
 
-<h1><% @client.whatsmysecret %></h1>
+<h1>HOME SCREEN</h1>
+
+<%= link_to "VIEW STAMP", "http://beta.snowshoestamp.com/applications/client/5bc9c3ddf1f46265e03a/" %>
+<%= link_to "NEW STAMP", "http://beta.snowshoestamp.com/applications/client/5bc9c3ddf1f46265e03a/?new=true" %>
+<%= link_to "EDIT STAMP", "http://beta.snowshoestamp.com/applications/client/5bc9c3ddf1f46265e03a/?edit=true" %>
