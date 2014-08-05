@@ -1,3 +1,18 @@
 // Place all the styles related to the Demos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.button {
+	width: 80%;
+	height: 100px;
+	background: blue;
+	color: white;
+	text-decoration: none;
+	font-family: 'Helvetica', 'sans-serif';
+	font-size: 90px;
+	margin: 10px auto;
+	display: block;
+	border-radius: 10px;
+	text-align: center;
+	padding: 50px 0;
+}
