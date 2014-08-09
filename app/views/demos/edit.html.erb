@@ -7,7 +7,10 @@
 		<%= d.text_field :stamp_serial, :value => @form_filler %>
 
 		<%= image_tag @demo.stamp_image.url(:medium) %>
-		<%= d.file_field :stamp_image %><br />
+		<%= d.file_field :stamp_image, :id => "assetImage" %><br />
+
+		<%= d.label :asset_url, "Asset URL" %>
+		<%= d.text_field :asset_url, :id => "assetURL" %>
 	</fieldset>
 
 	<%= d.submit "Update Demo" %>
