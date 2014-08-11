@@ -12,23 +12,11 @@ class DemosController < ApplicationController
 
   def create
     @demo = Demo.new(demo_params)
-      binding.pry
-    if demo_params["asset_url"] = nil
-      @demo.is_image = true
-      if @demo.save
-        redirect_to demos_path
-      else
-        flash[:notice] = "Did not save. Cannot create new stamps with the same stamp-serial."
-        render action: "index"
-      end
+    if @demo.save
+      redirect_to demos_path
     else
-      @demo.stamp_image = nil
-      if @demo.save
-        redirect_to demos_path
-      else
-        flash[:notice] = "Did not save. Cannot create new stamps with the same stamp-serial."
-        render action: "index"
-      end
+      flash[:notice] = "Did not save. Cannot create new stamps with the same stamp-serial."
+      render action: "index"
     end
   end
 
@@ -44,7 +32,7 @@ class DemosController < ApplicationController
   def callback
     client = Client.new('5bc9c3ddf1f46265e03a', '70a99aa7f4de7f48f235215ce2708b6e4f19377c')
 
-    @callback_url = "10.99.114.195:3000/stamp_info"
+    @callback_url = "http://stampmaker.herokuapp.com/stamp_info"
     @data = {"data" => params["data"], "new" => params["new"]}
 
 
@@ -68,12 +56,7 @@ class DemosController < ApplicationController
       render action: "edit"
     else
       @demo = Demo.find_by_stamp_serial(@form_filler)
-      binding.pry
-      if @demo.is_image
-        render action: "callback"
-      else
-        redirect_to @demo.asset_url
-      end
+      render action: "callback"
     end
   end
 
@@ -84,6 +67,6 @@ class DemosController < ApplicationController
   private
 
   def demo_params
-  	params.require(:demo).permit(:stamp_serial, :stamp_image, :is_image, :asset_url)
+  	params.require(:demo).permit(:stamp_serial, :stamp_image)
   end 
 end
