@@ -56,7 +56,11 @@ class DemosController < ApplicationController
       render action: "edit"
     else
       @demo = Demo.find_by_stamp_serial(@form_filler)
-      render action: "callback"
+      if @demo.asset_url != ""
+        redirect_to @demo.asset_url
+      else
+        render action: "callback"        
+      end
     end
   end
 
@@ -67,6 +71,6 @@ class DemosController < ApplicationController
   private
 
   def demo_params
-  	params.require(:demo).permit(:stamp_serial, :stamp_image)
+  	params.require(:demo).permit(:stamp_serial, :stamp_image, :asset_url)
   end 
 end
