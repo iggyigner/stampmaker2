@@ -22,6 +22,7 @@ class DemosController < ApplicationController
 
   def update
     @demo = Demo.find_by_stamp_serial(params[:demo][:stamp_serial])
+    @demo.stamp_image = nil
     if @demo.update(demo_params)
       redirect_to demos_path
     else
