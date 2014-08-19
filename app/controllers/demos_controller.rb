@@ -31,7 +31,7 @@ class DemosController < ApplicationController
   end
 
   def callback
-    client = Client.new('5bc9c3ddf1f46265e03a', '70a99aa7f4de7f48f235215ce2708b6e4f19377c')
+    client = Client.new('4a950d6f134d084c12d6', '5712e47771f89930335b8068c9725f024c2a8aaa')
 
     @callback_url = "http://stampmaker2.herokuapp.com/stamp_info"
     @data = {"data" => params["data"], "new" => params["new"]}

@@ -1,4 +1,4 @@
 GSTORAGE_ACCESS_KEY_ID: GOOGWCV73JPEBFVC5YSS
 GSTORAGE_SECRET_ACCESS_KEY: 36UKbraVNswdQaP8U/ftJiTXkoPYWmagRmML0301
-GSTORAGE_HOST: http://stamp-images.commondatastorage.googleapis.com #bucket name
-GSTORAGE_BUCKET: 'stamp-images'
+GSTORAGE_HOST: http://stamp-images-2.commondatastorage.googleapis.com #bucket name
+GSTORAGE_BUCKET: 'stamp-images-2'
