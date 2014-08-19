@@ -23,14 +23,14 @@ default: &default
 
 development:
   <<: *default
-  database: stampmaker_development
+  database: stampmaker2_development
   host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: stampmaker
+  #username: stampmaker2
 
   # The password associated with the postgres role (username).
   #password:
@@ -58,7 +58,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: stampmaker_test
+  database: stampmaker2_test
   host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -82,6 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: stampmaker_production
-  username: stampmaker
-  password: <%= ENV['stampmaker_DATABASE_PASSWORD'] %>
+  database: stampmaker2_production
+  username: stampmaker2
+  password: <%= ENV['stampmaker2_DATABASE_PASSWORD'] %>
