@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'demos#index'
+  root "demos#index"
   get 'demos' => "demos#index", as: 'demos'
-  get 'new' => "demos#new", as: 'new_demo'
   post 'stamp_info' => "demos#callback", as: 'show_stamp_image'
-  get 'errors' => "demos#errors"
+  get 'signup' => "demos#signup", as: 'signup'
+  get 'error' => "demos#error", as: 'error'
   resources :demos
 
 

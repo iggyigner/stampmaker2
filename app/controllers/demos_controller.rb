@@ -1,33 +1,11 @@
 require 'Client'
-# include Client
 
 class DemosController < ApplicationController
   def index
-  	@demos = Demo.all
+    redirect_to "http://beta.snowshoestamp.com/applications/client/4a950d6f134d084c12d6/"
   end
 
-  def new
-  	@demo = Demo.new
-  end
-
-  def create
-    @demo = Demo.new(demo_params)
-    if @demo.save
-      redirect_to demos_path
-    else
-      flash[:notice] = "Did not save. Cannot create new stamps with the same stamp-serial."
-      render action: "index"
-    end
-  end
-
-  def update
-    @demo = Demo.find_by_stamp_serial(params[:demo][:stamp_serial])
-    @demo.stamp_image = nil
-    if @demo.update(demo_params)
-      redirect_to demos_path
-    else
-      render action: "edit"
-    end
+  def signup
   end
 
   def callback
@@ -47,31 +25,15 @@ class DemosController < ApplicationController
     @resp = @consumer.request(:post, '/v2/stamp', nil, {}, @data, { 'Content-Type' => 'application/x-www-form-urlencoded' })
 
     @response = JSON.parse(@resp.body)
-    @form_filler = @response["stamp"]["serial"]
-
-    if params["new"] 
-      @demo = Demo.new
-      render action: "new"
-    elsif params["edit"]
-      @demo = Demo.find_by_stamp_serial(@form_filler)
-      render action: "edit"
+    
+    if @response.include? 'stamp' 
+      redirect_to "http://snow.sh/coffee"
     else
-      @demo = Demo.find_by_stamp_serial(@form_filler)
-      if @demo.asset_url != ""
-        redirect_to @demo.asset_url
-      else
-        render action: "callback"        
-      end
+      render action: "error"
     end
   end
 
-  def errors
-    #TODO: send error
+  def error
   end
 
-  private
-
-  def demo_params
-  	params.require(:demo).permit(:stamp_serial, :stamp_image, :asset_url)
-  end 
 end
